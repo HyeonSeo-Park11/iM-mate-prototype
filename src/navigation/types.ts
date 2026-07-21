@@ -7,4 +7,7 @@ export type RootStackParamList = {
   DandiScan: undefined;
   DandiNudge: undefined;
   DandiResult: { reconsidered: boolean };
+  TtokdiScan: undefined;
+  TtokdiNudge: undefined;
+  TtokdiResult: { usedSubsidy: boolean };
 };

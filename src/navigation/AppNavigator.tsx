@@ -9,6 +9,9 @@ import CompletionScreen from '../screens/CompletionScreen';
 import DandiScanScreen from '../screens/DandiScanScreen';
 import DandiNudgeScreen from '../screens/DandiNudgeScreen';
 import DandiResultScreen from '../screens/DandiResultScreen';
+import TtokdiScanScreen from '../screens/TtokdiScanScreen';
+import TtokdiNudgeScreen from '../screens/TtokdiNudgeScreen';
+import TtokdiResultScreen from '../screens/TtokdiResultScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -40,6 +43,17 @@ export default function AppNavigator() {
           options={{ animation: 'fade' }}
         />
         <Stack.Screen name="DandiResult" component={DandiResultScreen} />
+        <Stack.Screen
+          name="TtokdiScan"
+          component={TtokdiScanScreen}
+          options={{ animation: 'fade' }}
+        />
+        <Stack.Screen
+          name="TtokdiNudge"
+          component={TtokdiNudgeScreen}
+          options={{ animation: 'fade' }}
+        />
+        <Stack.Screen name="TtokdiResult" component={TtokdiResultScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
