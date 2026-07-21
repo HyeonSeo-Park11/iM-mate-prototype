@@ -6,6 +6,9 @@ import ChatScreen from '../screens/ChatScreen';
 import PrefilledFormScreen from '../screens/PrefilledFormScreen';
 import BiometricAuthScreen from '../screens/BiometricAuthScreen';
 import CompletionScreen from '../screens/CompletionScreen';
+import DandiScanScreen from '../screens/DandiScanScreen';
+import DandiNudgeScreen from '../screens/DandiNudgeScreen';
+import DandiResultScreen from '../screens/DandiResultScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -26,6 +29,17 @@ export default function AppNavigator() {
           options={{ animation: 'fade' }}
         />
         <Stack.Screen name="Completion" component={CompletionScreen} />
+        <Stack.Screen
+          name="DandiScan"
+          component={DandiScanScreen}
+          options={{ animation: 'fade' }}
+        />
+        <Stack.Screen
+          name="DandiNudge"
+          component={DandiNudgeScreen}
+          options={{ animation: 'fade' }}
+        />
+        <Stack.Screen name="DandiResult" component={DandiResultScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

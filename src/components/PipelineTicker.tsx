@@ -9,10 +9,12 @@ export default function PipelineTicker({
   steps,
   stepDelayMs = 550,
   onDone,
+  variant = 'light',
 }: {
   steps: Step[];
   stepDelayMs?: number;
   onDone?: () => void;
+  variant?: 'light' | 'dark';
 }) {
   const [doneCount, setDoneCount] = useState(0);
 
@@ -46,8 +48,18 @@ export default function PipelineTicker({
               )}
             </View>
             <View style={styles.textWrap}>
-              <Text style={styles.service}>{step.service}</Text>
-              <Text style={[styles.label, isDone && styles.labelDone]}>{step.label}</Text>
+              <Text style={[styles.service, variant === 'dark' && styles.serviceDark]}>
+                {step.service}
+              </Text>
+              <Text
+                style={[
+                  styles.label,
+                  variant === 'dark' && styles.labelDark,
+                  isDone && (variant === 'dark' ? styles.labelDoneDark : styles.labelDone),
+                ]}
+              >
+                {step.label}
+              </Text>
             </View>
           </View>
         );
@@ -74,6 +86,9 @@ const styles = StyleSheet.create({
   dotActive: { backgroundColor: '#fff' },
   textWrap: { flex: 1 },
   service: { fontSize: 11, color: colors.textSub, marginBottom: 2 },
+  serviceDark: { color: '#8AA0D6' },
   label: { fontSize: 13, color: colors.text, fontWeight: '500' },
+  labelDark: { color: '#E7ECFB' },
   labelDone: { color: colors.textSub },
+  labelDoneDark: { color: '#8AA0D6' },
 });

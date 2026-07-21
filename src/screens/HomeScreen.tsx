@@ -13,6 +13,7 @@ import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import type { RootStackParamList } from '../navigation/types';
 import { colors, gradients } from '../theme/colors';
 import PipelineTicker from '../components/PipelineTicker';
+import DandiMascot from '../components/DandiMascot';
 import {
   mockMerchant,
   mockPrediction,
@@ -20,6 +21,7 @@ import {
   mockUser,
   pipelineSteps,
 } from '../data/mock';
+import { dandiMerchant, dandiSavings } from '../data/mockDandi';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
@@ -70,6 +72,33 @@ export default function HomeScreen({ navigation }: Props) {
             <Ionicons name="location" size={18} color="#fff" />
             <Text style={styles.triggerBtnText}>
               '{mockMerchant.name}' 근처 도착 시뮬레이션
+            </Text>
+          </Pressable>
+        </View>
+
+        <View style={styles.dandiBox}>
+          <View style={styles.dandiHeaderRow}>
+            <DandiMascot size={48} />
+            <View style={styles.dandiHeaderText}>
+              <Text style={styles.dandiTitle}>단디가 지켜보고 있어요</Text>
+              <Text style={styles.dandiDesc}>
+                과소비 위험 존에서 결제 직전, 1초만 다시 생각해보도록 도와드려요.
+              </Text>
+            </View>
+          </View>
+          <View style={styles.dandiStatRow}>
+            <Text style={styles.dandiStatLabel}>이번 달 단디 덕분에 아낀 금액</Text>
+            <Text style={styles.dandiStatValue}>
+              {dandiSavings.totalSavedByDandi.toLocaleString()}원
+            </Text>
+          </View>
+          <Pressable
+            style={styles.dandiTriggerBtn}
+            onPress={() => navigation.navigate('DandiScan')}
+          >
+            <Ionicons name="shield-checkmark" size={18} color="#fff" />
+            <Text style={styles.dandiTriggerBtnText}>
+              '{dandiMerchant.name}' 위험 존 진입 시뮬레이션 (금요일 저녁)
             </Text>
           </Pressable>
         </View>
@@ -164,6 +193,38 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   triggerBtnText: { color: '#fff', fontWeight: '700', fontSize: 13 },
+  dandiBox: {
+    backgroundColor: '#0B1220',
+    borderRadius: 16,
+    padding: 16,
+    marginTop: 14,
+  },
+  dandiHeaderRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 14 },
+  dandiHeaderText: { flex: 1, marginLeft: 12 },
+  dandiTitle: { color: '#fff', fontWeight: '700', fontSize: 14, marginBottom: 4 },
+  dandiDesc: { color: '#8AA0D6', fontSize: 11, lineHeight: 16 },
+  dandiStatRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: 'rgba(255,255,255,0.06)',
+    borderRadius: 12,
+    paddingVertical: 10,
+    paddingHorizontal: 14,
+    marginBottom: 12,
+  },
+  dandiStatLabel: { color: '#8AA0D6', fontSize: 11 },
+  dandiStatValue: { color: '#F4C874', fontSize: 15, fontWeight: '700' },
+  dandiTriggerBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#1D2B57',
+    borderRadius: 12,
+    paddingVertical: 12,
+    gap: 8,
+  },
+  dandiTriggerBtnText: { color: '#fff', fontWeight: '700', fontSize: 12, flexShrink: 1 },
   modalBackdrop: { flex: 1, backgroundColor: 'rgba(0,0,0,0.45)', justifyContent: 'flex-end' },
   scanCard: {
     backgroundColor: '#fff',
