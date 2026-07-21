@@ -15,6 +15,7 @@ import { colors, gradients } from '../theme/colors';
 import PipelineTicker from '../components/PipelineTicker';
 import DandiMascot from '../components/DandiMascot';
 import TtokdiMascot from '../components/TtokdiMascot';
+import WoodyMascot from '../components/WoodyMascot';
 import {
   mockMerchant,
   mockPrediction,
@@ -24,6 +25,7 @@ import {
 } from '../data/mock';
 import { dandiMerchant, dandiSavings } from '../data/mockDandi';
 import { ttokdiMerchant, ttokdiSavings } from '../data/mockTtokdi';
+import { woodySavedStats } from '../data/mockWoody';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
@@ -128,6 +130,33 @@ export default function HomeScreen({ navigation }: Props) {
             <Ionicons name="pricetag" size={18} color="#fff" />
             <Text style={styles.ttokdiTriggerBtnText}>
               '{ttokdiMerchant.name}' 가맹점 도착 시뮬레이션
+            </Text>
+          </Pressable>
+        </View>
+
+        <View style={styles.woodyBox}>
+          <View style={styles.dandiHeaderRow}>
+            <WoodyMascot size={48} />
+            <View style={styles.dandiHeaderText}>
+              <Text style={styles.woodyTitle}>우디가 정책을 찾아줘요</Text>
+              <Text style={styles.woodyDesc}>
+                내 프로필에 딱 맞는 청년 정책을 3줄로 요약해서 밤에 알려드려요.
+              </Text>
+            </View>
+          </View>
+          <View style={styles.woodyStatRow}>
+            <Text style={styles.woodyStatLabel}>우디가 찾아준 정책</Text>
+            <Text style={styles.woodyStatValue}>
+              {woodySavedStats.totalPoliciesFound}건
+            </Text>
+          </View>
+          <Pressable
+            style={styles.woodyTriggerBtn}
+            onPress={() => navigation.navigate('WoodyScan')}
+          >
+            <Ionicons name="document-text" size={18} color="#fff" />
+            <Text style={styles.woodyTriggerBtnText}>
+              오늘 밤 맞춤 정책 추천 시뮬레이션
             </Text>
           </Pressable>
         </View>
@@ -284,6 +313,36 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   ttokdiTriggerBtnText: { color: '#fff', fontWeight: '700', fontSize: 12, flexShrink: 1 },
+  woodyBox: {
+    backgroundColor: '#180F21',
+    borderRadius: 16,
+    padding: 16,
+    marginTop: 14,
+  },
+  woodyTitle: { color: '#fff', fontWeight: '700', fontSize: 14, marginBottom: 4 },
+  woodyDesc: { color: '#C4B5F5', fontSize: 11, lineHeight: 16 },
+  woodyStatRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: 'rgba(255,255,255,0.06)',
+    borderRadius: 12,
+    paddingVertical: 10,
+    paddingHorizontal: 14,
+    marginBottom: 12,
+  },
+  woodyStatLabel: { color: '#C4B5F5', fontSize: 11 },
+  woodyStatValue: { color: '#B79CFF', fontSize: 15, fontWeight: '700' },
+  woodyTriggerBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#6C4FD1',
+    borderRadius: 12,
+    paddingVertical: 12,
+    gap: 8,
+  },
+  woodyTriggerBtnText: { color: '#fff', fontWeight: '700', fontSize: 12, flexShrink: 1 },
   modalBackdrop: { flex: 1, backgroundColor: 'rgba(0,0,0,0.45)', justifyContent: 'flex-end' },
   scanCard: {
     backgroundColor: '#fff',
