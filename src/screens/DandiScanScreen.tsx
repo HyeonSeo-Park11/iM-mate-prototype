@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import type { RootStackParamList } from '../navigation/types';
@@ -13,7 +13,7 @@ export default function DandiScanScreen({ navigation }: Props) {
   const [ready, setReady] = useState(false);
 
   return (
-    <View style={styles.screen}>
+    <ScrollView style={styles.screen} contentContainerStyle={styles.scrollContent}>
       <View style={styles.lockHeader}>
         <DandiMascot size={56} />
         <Text style={styles.clock}>19:42</Text>
@@ -49,12 +49,13 @@ export default function DandiScanScreen({ navigation }: Props) {
           </Pressable>
         </View>
       )}
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: '#0B1220', padding: 24, paddingTop: 60 },
+  screen: { flex: 1, backgroundColor: '#0B1220' },
+  scrollContent: { padding: 24, paddingTop: 60, paddingBottom: 50 },
   lockHeader: { alignItems: 'center', marginBottom: 36 },
   clock: { color: '#fff', fontSize: 44, fontWeight: '300', marginTop: 14 },
   date: { color: '#8AA0D6', fontSize: 13, marginTop: 4 },
