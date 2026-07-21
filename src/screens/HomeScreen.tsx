@@ -14,6 +14,7 @@ import type { RootStackParamList } from '../navigation/types';
 import { colors, gradients } from '../theme/colors';
 import PipelineTicker from '../components/PipelineTicker';
 import DandiMascot from '../components/DandiMascot';
+import TtokdiMascot from '../components/TtokdiMascot';
 import {
   mockMerchant,
   mockPrediction,
@@ -22,6 +23,7 @@ import {
   pipelineSteps,
 } from '../data/mock';
 import { dandiMerchant, dandiSavings } from '../data/mockDandi';
+import { ttokdiMerchant, ttokdiSavings } from '../data/mockTtokdi';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
@@ -99,6 +101,33 @@ export default function HomeScreen({ navigation }: Props) {
             <Ionicons name="shield-checkmark" size={18} color="#fff" />
             <Text style={styles.dandiTriggerBtnText}>
               '{dandiMerchant.name}' 위험 존 진입 시뮬레이션 (금요일 저녁)
+            </Text>
+          </Pressable>
+        </View>
+
+        <View style={styles.ttokdiBox}>
+          <View style={styles.dandiHeaderRow}>
+            <TtokdiMascot size={48} />
+            <View style={styles.dandiHeaderText}>
+              <Text style={styles.ttokdiTitle}>똑디가 최적 결제를 찾아줘요</Text>
+              <Text style={styles.ttokdiDesc}>
+                지원금·지역화폐를 받는 가맹점이면, 현금 대신 먼저 쓰도록 알려드려요.
+              </Text>
+            </View>
+          </View>
+          <View style={styles.ttokdiStatRow}>
+            <Text style={styles.ttokdiStatLabel}>이번 달 똑디 덕분에 아낀 금액</Text>
+            <Text style={styles.ttokdiStatValue}>
+              {ttokdiSavings.totalSavedByTtokdi.toLocaleString()}원
+            </Text>
+          </View>
+          <Pressable
+            style={styles.ttokdiTriggerBtn}
+            onPress={() => navigation.navigate('TtokdiScan')}
+          >
+            <Ionicons name="pricetag" size={18} color="#fff" />
+            <Text style={styles.ttokdiTriggerBtnText}>
+              '{ttokdiMerchant.name}' 가맹점 도착 시뮬레이션
             </Text>
           </Pressable>
         </View>
@@ -225,6 +254,36 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   dandiTriggerBtnText: { color: '#fff', fontWeight: '700', fontSize: 12, flexShrink: 1 },
+  ttokdiBox: {
+    backgroundColor: '#0E1F17',
+    borderRadius: 16,
+    padding: 16,
+    marginTop: 14,
+  },
+  ttokdiTitle: { color: '#fff', fontWeight: '700', fontSize: 14, marginBottom: 4 },
+  ttokdiDesc: { color: '#7FCBA3', fontSize: 11, lineHeight: 16 },
+  ttokdiStatRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: 'rgba(255,255,255,0.06)',
+    borderRadius: 12,
+    paddingVertical: 10,
+    paddingHorizontal: 14,
+    marginBottom: 12,
+  },
+  ttokdiStatLabel: { color: '#7FCBA3', fontSize: 11 },
+  ttokdiStatValue: { color: '#6EE7A8', fontSize: 15, fontWeight: '700' },
+  ttokdiTriggerBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#2EB87A',
+    borderRadius: 12,
+    paddingVertical: 12,
+    gap: 8,
+  },
+  ttokdiTriggerBtnText: { color: '#fff', fontWeight: '700', fontSize: 12, flexShrink: 1 },
   modalBackdrop: { flex: 1, backgroundColor: 'rgba(0,0,0,0.45)', justifyContent: 'flex-end' },
   scanCard: {
     backgroundColor: '#fff',
