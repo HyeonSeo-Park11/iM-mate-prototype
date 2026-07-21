@@ -10,4 +10,7 @@ export type RootStackParamList = {
   TtokdiScan: undefined;
   TtokdiNudge: undefined;
   TtokdiResult: { usedSubsidy: boolean };
+  WoodyScan: undefined;
+  WoodyChat: undefined;
+  WoodyResult: undefined;
 };
